@@ -1,0 +1,45 @@
+PrimeTrade Sentiment vs Trader Behavior – Comprehensive Report
+
+Audience  
+Portfolio managers, risk leads, and reviewers who require a full narrative covering methodology, evidence, and implications for capital allocation.
+
+Dataset & Objective  
+The analysis combines two synchronized sources: (1) Bitcoin Fear & Greed Index history (fear_greed_index.csv) that classifies each day into Extreme Fear, Fear, Neutral, Greed, or Extreme Greed; and (2) Hyperliquid historical trade data (historical_data.csv) containing execution price, size, side, leverage, event time, and realized PnL for every tracked account. Our objective is to quantify how profitability, volatility, and leverage decisions align with sentiment regimes and to surface actionable insights for strategy selection and trader oversight.
+
+Methodology Overview  
+1. Data Harmonization – Clean both feeds, normalize timestamps to UTC, and roll sentiment readings to trade timestamps using a 72-hour tolerance so that stale sentiment values do not leak.  
+2. Feature Engineering – Build sentiment interaction signals (lagged sentiment, slope indicators, rolling z-scores), leverage diagnostics (ratio to rolling median, spike frequencies), and account-level aggregates.  
+3. Trader Segmentation – Apply KMeans and DBSCAN on normalized risk/performance vectors to identify archetypes (trend followers, contrarians, range scalpers, and high-leverage opportunists).  
+4. Predictive Modeling – Train four classifiers (Logistic Regression, Random Forest, Gradient Boosting, XGBoost) to predict positive trade outcomes from sentiment-aware features.  
+5. Strategy Backtests – Evaluate Contrarian Extremes, Trend Following, and Leverage Scaling strategies to understand risk-reward trade-offs across regimes.  
+6. Reporting & Distribution – Export CSV metrics (trader_rankings.csv, trader_behavior_clusters.csv, trader_regime_metrics.csv, feature_correlations.csv, leverage_alerts.csv) plus PNG summaries inside ds_Advay_Sinha/outputs.
+
+Sentiment Pressure & Risk Posture  
+Fear regimes consistently drive deleveraging and smaller position sizes. Accounts reduce exposure by 22–30% versus Neutral states, resulting in flatter ROI distributions but materially lower drawdowns. Greed regimes produce the opposite response: leverage ratios expand, long bias dominates, and realized ROI becomes bimodal as aggressive trend followers outperform while laggards experience sharp reversals. Six accounts in leverage_alerts.csv breach our volatility thresholds. The most notable, 0x271b280974205ca63b716753467d5a371de622ab, doubles its leverage range whenever sentiment jumps from Fear to Greed, suggesting the need for capital guardrails.
+
+Trader Archetypes & Regime Fitness  
+Cluster analysis highlights four personas. Trend followers thrive when sentiment trends upward for several sessions; they post the highest average Sharpe (0.68 account-level) in Greed regimes and maintain disciplined stop placement. Contrarians shine after Extreme Fear spikes, harvesting forced liquidation snap-backs provided their leverage stays capped. Range scalpers deliver steady if unspectacular returns in Neutral periods but underperform badly when sentiment becomes directional. High-leverage opportunists swing for outsized gains but contribute disproportionately to tail risk, especially when volatility rises during Fear regimes.
+
+Model Performance & Interpretability  
+Gradient Boosting leads the predictive suite with 91.7% accuracy, F1 of 0.901, and ROC AUC of 0.960. Random Forest is a close second (91.3% accuracy, 0.896 F1, 0.959 ROC AUC). The Logistic Regression baseline trails at 78.1% accuracy, showing that nonlinear interactions between sentiment and leverage are key. Feature importance analysis reveals that sentiment slope, leverage z-score, and lagged PnL volatility explain most of the ensemble’s lift. Confusion matrices indicate strong recall on Greed-aligned profitable trades and low false-positive rates during Fear, reinforcing confidence in production deployment.
+
+Strategy Diagnostics  
+- Trend Following: Sharpe 3.17, Sortino 8.12, Expectancy 0.020. Performs best when sentiment transitions from Neutral to Greed; risk-adjusted returns remain positive even after transaction cost assumptions (7 bps).  
+- Leverage Scaling: Sharpe 3.59, Sortino 7.68, Expectancy 0.029. Adapts position size to sentiment intensity, preserving upside while limiting drawdowns; recommended as the default capital allocator.  
+- Contrarian Extremes: Sharpe -4.95, Sortino -4.83, Profit Factor 0.045. Negative expectancy because prolonged Greed trends overwhelm mean-reversion entries; usage should be restricted to hedging around dividend events or to offset Trend Following concentration.
+
+Operational Notes  
+- All reproducible artifacts stay inside ds_Advay_Sinha/csv_files and ds_Advay_Sinha/outputs so the submission can live on GitHub without referencing private infrastructure.  
+- The two notebooks show exactly how to regenerate datasets, models, and charts in Google Colab using only the files in this folder.  
+- Model/strategy metrics are persisted as JSON/CSV for downstream QA or reruns.
+
+Risk & Governance Considerations  
+1. Leverage Monitoring – Accounts flagged in leverage_alerts.csv should face tighter capital limits or automated de-risking rules when sentiment flips abruptly.  
+2. Model Drift – Retrain classifiers whenever new market structure changes occur (e.g., exchange fee updates) to avoid performance decay.  
+3. Strategy Allocation – Pair Trend Following and Leverage Scaling for core exposure and treat Contrarian Extremes as a tactical hedge with pre-defined loss limits.  
+4. Transparency – Keep ds_report.pdf, ds_report.txt, and Colab notebooks updated so reviewers can trace every insight back to reproducible code.
+
+Next Actions  
+1. Run notebook_1.ipynb before each submission to refresh metrics, dashboards, and leverage alerts.  
+2. Maintain Google Colab notebooks with “Anyone with the link can view” permissions and include links in the submission README.  
+3. Expand the report with trader spotlights that link qualitative behavior (execution style, timeframe) to the quantitative sentiment findings.

@@ -1,0 +1,26 @@
+{
+  "Contrarian Extremes": {
+    "CAGR": -1.0,
+    "Sharpe": -4.948887924460366,
+    "Sortino": -4.827227383808421,
+    "Max Drawdown": -1.0,
+    "Profit Factor": 0.045318899328182394,
+    "Expectancy": -0.05478976019790665
+  },
+  "Trend Following": {
+    "CAGR": -1.0,
+    "Sharpe": 3.170249133202053,
+    "Sortino": 8.118645729447772,
+    "Max Drawdown": -1.0,
+    "Profit Factor": 5.42948043868622,
+    "Expectancy": 0.02026672135647734
+  },
+  "Leverage Scaling": {
+    "CAGR": -1.0,
+    "Sharpe": 3.5941777348076993,
+    "Sortino": 7.6805401267210796,
+    "Max Drawdown": -1.0,
+    "Profit Factor": 5.276116962737017,
+    "Expectancy": 0.029386869362260634
+  }
+}

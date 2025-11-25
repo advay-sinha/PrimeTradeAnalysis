@@ -1,0 +1,7 @@
+account,Extreme Greed,Greed,Neutral,leverage_range,alert_level,message
+0x271b280974205ca63b716753467d5a371de622ab,0.0,0.8851258642214477,0.0631903116948407,0.821935552526607,High,Leverage swings across sentiment regimes exceed 0.50x. Review risk settings.
+0x3f9a0aadc7f04a7c9d75dc1b5a6ddd6e36486cf6,0.0,1.0383774053778225,0.20441162652374786,0.8339657788540746,High,Leverage swings across sentiment regimes exceed 0.50x. Review risk settings.
+0x6d6a4b953f202f8df5bed40692e7fd865318264a,0.0,0.00256370080278521,0.9894326090778202,0.9868689082750349,High,Leverage swings across sentiment regimes exceed 0.50x. Review risk settings.
+0x8381e6d82f1affd39a336e143e081ef7620a3b7f,0.0,0.1863947513470067,0.8863677683829811,0.6999730170359745,Moderate,Leverage swings across sentiment regimes exceed 0.50x. Review risk settings.
+0xaf40fdc468c30116bd3307bcbf4a451a7ebf1deb,0.0,8.90440814260932,0.4916334391913655,8.412774703417954,High,Leverage swings across sentiment regimes exceed 0.50x. Review risk settings.
+0xb1231a4a2dd02f2276fa3c5e2a2f3436e6bfed23,1.3471538371543952,1.3488905493511103,0.11658171473543047,1.2323088346156799,High,Leverage swings across sentiment regimes exceed 0.50x. Review risk settings.
