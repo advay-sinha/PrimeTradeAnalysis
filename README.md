@@ -17,7 +17,6 @@ This folder mirrors the standardized submission layout and contains everything n
 
 2. **Open `notebook_1.ipynb` in Colab**  
    - Runtime → Change runtime type → Python 3.  
-   - Run the *Install Dependencies* cell (`!pip install -q -r requirements.txt`).  
    - Update the `DATA_ROOT` variable if your folder is stored in a different Drive path, then execute the remaining cells in order.  
    - The notebook loads the CSVs, engineers sentiment-aware features, merges trades with sentiment (72h tolerance), clusters trader archetypes, trains Logistic Regression / Random Forest / Gradient Boosting / XGBoost classifiers, evaluates sentiment-driven strategies, and saves fresh CSV/JSON/PNG outputs back into `csv_files/` and `outputs/`.
 
@@ -27,8 +26,3 @@ This folder mirrors the standardized submission layout and contains everything n
 
 4. **Refresh the report**  
    - After running the notebooks, update `ds_report.pdf` / `ds_report.txt` with any new findings and re-export additional visuals into `outputs/` if needed.
-
-## Submission Notes
-- Keep this folder’s structure exactly as provided when uploading to GitHub or submitting the assignment.
-- No React or other external dashboards are required; everything runs inside Colab using the assets in this directory alone.
-- Always provide the Colab share links (view-only) alongside the zipped folder per the standardized submission format.
